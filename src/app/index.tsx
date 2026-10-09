@@ -1,7 +1,7 @@
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { styles, colors } from "../constants/styles";
+import { colors, styles } from "../constants/styles";
 
 /*
   RINGKASAN KRITERIA PENILAIAN (Demo Modul 1)
