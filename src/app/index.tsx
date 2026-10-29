@@ -3,9 +3,9 @@ import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { colors, styles } from "../constants/styles";
-import { motors, packages, quickActions } from "../constants/data";
 import type { Motor, QuickAction, ServicePackage } from "../constants/data";
+import { motors, packages, quickActions } from "../constants/data";
+import { colors, styles } from "../constants/styles";
 
 // ===================================================================
 // HALAMAN BERANDA (route: "/")
@@ -39,9 +39,10 @@ export default function Index() {
   // Dipanggil saat tombol aksi cepat ditekan
   const handleQuickAction = (action: QuickAction) => {
     if (action.label === "Titip Sekarang") {
-      // [KRITERIA 2] router.push() = buka halaman baru di atas tumpukan
-      router.push("/titip");
-    }
+      router.push("/titip");// [KRITERIA 2] router.push() = buka halaman baru di atas tumpukan
+    }else if (action.label === "Mode") {
+                router.push("/mode");
+            }
   };
 
   // Membuat 1 kartu motor dari 1 data motor
@@ -73,7 +74,7 @@ export default function Index() {
         <View
           style={[
             styles.statusDot,
-            { backgroundColor: motor.status === "dititip" ? "green" : "gray" },
+            { backgroundColor: motor.status === "dititip" ? "green" : motor.status === "dipesan" ? "orange" : "gray" },
           ]}
         />
       </Pressable>

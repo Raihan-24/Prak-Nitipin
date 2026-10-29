@@ -3,8 +3,6 @@ import { Ionicons } from "@expo/vector-icons";
 // ===================================================================
 // TYPE & INTERFACE (dipakai bersama oleh semua halaman)
 // ===================================================================
-
-// Union type: status hanya boleh salah satu dari tiga nilai ini
 export type MotorStatus = "dititip" | "diambil" | "dipesan";
 
 export interface Motor {
@@ -55,7 +53,7 @@ export const quickActions: QuickAction[] = [
     { id: "1", label: "Titip Sekarang", icon: "add-circle" },
     { id: "2", label: "Riwayat", icon: "time" },
     { id: "3", label: "Bantuan", icon: "help-circle" },
-    { id: "4", label: "Profile", icon: "person" },
+    { id: "4", label: "Mode", icon: "moon" },
 ];
 
 export const packages: ServicePackage[] = [

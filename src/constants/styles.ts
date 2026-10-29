@@ -153,7 +153,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   actionLabel: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "600",
     color: colors.primaryDark,
     marginTop: 8,

@@ -14,7 +14,6 @@ export default function Titip() {
     const router = useRouter();
 
     // ===== [KRITERIA 1] useState =====
-    // selectedId = id paket yang sedang dipilih (awalnya "2" = Mingguan)
     const [selectedId, setSelectedId] = useState<string>("2");
     // summary = teks ringkasan pilihan
     const [summary, setSummary] = useState<string>("");
