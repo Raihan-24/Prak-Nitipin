@@ -6,25 +6,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { motors } from "../../constants/data";
 import { colors, styles } from "../../constants/styles";
 
-// ===================================================================
 // HALAMAN DETAIL MOTOR (route dinamis: "/motor/1", "/motor/2", ...)
-// Nama file [id].tsx = bagian [id] bisa diisi nilai apa saja.
-// ===================================================================
 export default function MotorDetail() {
     const router = useRouter();
-
-    // Mengambil nilai id dari URL (misal "/motor/1" -> id = "1")
     const { id } = useLocalSearchParams<{ id: string }>();
-
-    // Mencari data motor yang id-nya sama dengan id dari URL
     const motor = motors.find((item) => item.id === id);
-
-    // [KRITERIA 1] useState: pengingat bisa dinyalakan atau dimatikan
     const [isReminderOn, setIsReminderOn] = useState<boolean>(false);
 
-    // [KRITERIA 2] canGoBack() + back() + replace()
-    // Jika ada halaman sebelumnya -> kembali.
-    // Jika tidak ada (misalnya halaman dibuka langsung dari URL) -> ke Beranda.
     const handleBack = () => {
         if (router.canGoBack()) {
             router.back();
@@ -33,7 +21,6 @@ export default function MotorDetail() {
         }
     };
 
-    // Jika id tidak ditemukan di data
     if (!motor) {
         return (
             <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>

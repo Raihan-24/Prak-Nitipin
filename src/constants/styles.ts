@@ -1,8 +1,5 @@
-// [EXTERNAL STYLE] Semua style ditulis di file terpisah ini, lalu di-import
-// di setiap halaman dengan: import { styles, colors } from "../constants/styles";
 import { StyleSheet } from "react-native";
 
-// Palet warna NITIPIN: minimalis dengan nuansa biru sesuai logo
 export const colors = {
   primary: "#5271FF",
   primaryDark: "#1B2559",
@@ -153,7 +150,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   actionLabel: {
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: "600",
     color: colors.primaryDark,
     marginTop: 8,
@@ -298,6 +295,36 @@ export const styles = StyleSheet.create({
   linkButtonText: {
     fontSize: 15,
     color: colors.textMuted,
+  },
+
+  // Loading dan error (halaman Pengelola)
+  centerBox: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 60,
+  },
+  centerText: {
+    marginTop: 12,
+    fontSize: 14,
+    color: colors.textMuted,
+    textAlign: "center",
+  },
+  errorBox: {
+    backgroundColor: "#FFF1F0",
+    borderRadius: 16,
+    padding: 20,
+    alignItems: "center",
+  },
+  errorTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#B42318",
+  },
+  errorText: {
+    fontSize: 13,
+    color: "#B42318",
+    marginTop: 6,
+    textAlign: "center",
   },
 
   // Teks identitas di bawah Beranda

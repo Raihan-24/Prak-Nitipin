@@ -3,25 +3,15 @@ import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import type { Motor, QuickAction, ServicePackage } from "../constants/data";
-import { motors, packages, quickActions } from "../constants/data";
 import { colors, styles } from "../constants/styles";
+import { motors, packages, quickActions } from "../constants/data";
+import type { Motor, QuickAction, ServicePackage } from "../constants/data";
 
-// ===================================================================
 // HALAMAN BERANDA (route: "/")
-// ===================================================================
 export default function Index() {
-  // router = object dari expo-router untuk berpindah halaman
   const router = useRouter();
-
-  // ===== [KRITERIA 1] useState =====
-  // greeting = nilai sekarang, setGreeting = fungsi untuk mengubahnya.
-  // Setiap setGreeting dipanggil, layar otomatis di-render ulang.
   const [greeting, setGreeting] = useState<string>("Selamat datang");
 
-  // ===== [KRITERIA 1] useEffect =====
-  // Dependency [] kosong = dijalankan SEKALI saat halaman pertama kali tampil.
-  // Di sini dipakai untuk mengatur sapaan sesuai jam.
   useEffect(() => {
     const hour = new Date().getHours();
     if (hour < 11) {
@@ -35,24 +25,19 @@ export default function Index() {
     }
   }, []);
 
-  // ===== CUSTOM FUNCTION =====
-  // Dipanggil saat tombol aksi cepat ditekan
   const handleQuickAction = (action: QuickAction) => {
     if (action.label === "Titip Sekarang") {
-      router.push("/titip");// [KRITERIA 2] router.push() = buka halaman baru di atas tumpukan
-    }else if (action.label === "Mode") {
-                router.push("/mode");
-            }
+      router.push("/titip");
+    } else if (action.label === "Pengelola") {
+      router.push("/pengelola");
+    }
   };
 
-  // Membuat 1 kartu motor dari 1 data motor
   const renderMotorCard = (motor: Motor) => {
     return (
       <Pressable
         key={motor.id}
         style={styles.motorCard}
-        // [KRITERIA 2] router.push() dengan parameter dinamis (id motor)
-        // Hasilnya membuka file app/motor/[id].tsx
         onPress={() =>
           router.push({ pathname: "/motor/[id]", params: { id: motor.id } })
         }
@@ -70,11 +55,10 @@ export default function Index() {
             {motor.plate} - {motor.location}
           </Text>
         </View>
-        {/* INLINE STYLE: warna titik bergantung pada status motor */}
         <View
           style={[
             styles.statusDot,
-            { backgroundColor: motor.status === "dititip" ? "green" : motor.status === "dipesan" ? "orange" : "gray" },
+            { backgroundColor: motor.status === "dititip" ? "green" : "gray" },
           ]}
         />
       </Pressable>
@@ -113,10 +97,8 @@ export default function Index() {
   };
 
   return (
-    // edges tanpa "top" karena header Stack sudah mengatur jarak atas
     <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
       <ScrollView contentContainerStyle={styles.content}>
-        {/* Header sapaan: teks greeting berasal dari state */}
         <View style={styles.header}>
           <View>
             <Text style={styles.greeting}>{greeting}</Text>

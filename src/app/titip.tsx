@@ -7,21 +7,12 @@ import type { ServicePackage } from "../constants/data";
 import { packages } from "../constants/data";
 import { colors, styles } from "../constants/styles";
 
-// ===================================================================
 // HALAMAN TITIP SEKARANG (route: "/titip")
-// ===================================================================
 export default function Titip() {
     const router = useRouter();
-
-    // ===== [KRITERIA 1] useState =====
     const [selectedId, setSelectedId] = useState<string>("2");
-    // summary = teks ringkasan pilihan
     const [summary, setSummary] = useState<string>("");
 
-    // ===== [KRITERIA 1] useEffect =====
-    // Dependency [selectedId] = dijalankan setiap kali selectedId berubah.
-    // Alurnya: tekan paket -> selectedId berubah -> layar render ulang
-    //          -> useEffect jalan -> summary diperbarui.
     useEffect(() => {
         const selected = packages.find((item) => item.id === selectedId);
         if (selected) {
@@ -29,7 +20,6 @@ export default function Titip() {
         }
     }, [selectedId]);
 
-    // [KRITERIA 2] canGoBack() + back() + replace() (sama seperti halaman detail)
     const handleBack = () => {
         if (router.canGoBack()) {
             router.back();
@@ -38,14 +28,12 @@ export default function Titip() {
         }
     };
 
-    // Membuat 1 pilihan paket dari 1 data paket
     const renderPackageOption = (item: ServicePackage) => {
         const isSelected = item.id === selectedId;
         return (
             <Pressable
                 key={item.id}
                 onPress={() => setSelectedId(item.id)}
-                // INLINE STYLE: tampilan berubah jika paket sedang dipilih
                 style={[
                     styles.packageCard,
                     isSelected && {
@@ -77,7 +65,6 @@ export default function Titip() {
                 <Text style={styles.sectionTitle}>Pilih paket penitipan</Text>
                 {packages.map(renderPackageOption)}
 
-                {/* Ringkasan: isinya berasal dari state summary */}
                 <View style={styles.summaryBox}>
                     <Text style={styles.summaryLabel}>Pilihan kamu</Text>
                     <Text style={styles.summaryValue}>{summary}</Text>
@@ -87,7 +74,6 @@ export default function Titip() {
                     <Text style={styles.primaryButtonText}>Konfirmasi Titip</Text>
                 </Pressable>
 
-                {/* [KRITERIA 2] router.back() langsung */}
                 <Pressable style={styles.linkButton} onPress={() => router.back()}>
                     <Text style={styles.linkButtonText}>Batal</Text>
                 </Pressable>
